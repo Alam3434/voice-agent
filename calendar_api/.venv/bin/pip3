@@ -1,4 +1,4 @@
-#!/Users/tylerauton-smith/AiAssistant/voice-agent/calendar_api/.venv/bin/python
+#!/Users/tylerauton-smith/AiAssistant/voice-agent/calendar_api/.venv/bin/python3.13
 # -*- coding: utf-8 -*-
 import re
 import sys

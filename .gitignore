@@ -54,3 +54,5 @@ service-account-key.json
 htmlcov/
 .tox/
 
+# Misc
+.venv

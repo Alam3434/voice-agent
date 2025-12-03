@@ -6,21 +6,29 @@ from pathlib import Path
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 import zoneinfo
+import os
+import json
 
-BASE_DIR = Path(__file__).resolve().parent
-SERVICE_ACCOUNT_FILE = BASE_DIR / "service-account-key.json"
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
-CALENDAR_ID = "mohammadalam2003@gmail.com"  # your real calendar
-LOCAL_TZ = zoneinfo.ZoneInfo("America/Los_Angeles") 
+CALENDAR_ID = os.getenv("CALENDAR_ID", "mohammadalam2003@gmail.com")
+LOCAL_TZ = zoneinfo.ZoneInfo("America/Los_Angeles")
 
 
 def get_calendar_service():
-    creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES
+    service_account_info = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+    if not service_account_info:
+        raise RuntimeError("GOOGLE_SERVICE_ACCOUNT_JSON is not set")
+
+    info = json.loads(service_account_info)
+
+    creds = service_account.Credentials.from_service_account_info(
+        info,
+        scopes=SCOPES,
     )
     service = build("calendar", "v3", credentials=creds)
     return service
+
 
 
 def get_events_for_range(start_local: datetime, end_local: datetime) -> List[Dict]:
