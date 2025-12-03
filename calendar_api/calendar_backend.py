@@ -12,7 +12,7 @@ SERVICE_ACCOUNT_FILE = BASE_DIR / "service-account-key.json"
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 CALENDAR_ID = "mohammadalam2003@gmail.com"  # your real calendar
-LOCAL_TZ = zoneinfo.ZoneInfo("America/Los_Angeles")
+LOCAL_TZ = zoneinfo.ZoneInfo("America/Los_Angeles") 
 
 
 def get_calendar_service():

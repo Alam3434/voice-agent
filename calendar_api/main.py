@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import zoneinfo
 from datetime import datetime
-from calendar_backend import find_free_slots, book_event
+from calendar_api.calendar_backend import find_free_slots, book_event
 
 app = FastAPI()
 
